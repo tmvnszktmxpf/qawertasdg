@@ -14,15 +14,15 @@ var authorRouter = require('./routes/author');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
-app.get('*',(req, res, next)=>{
-  conn.query(`select * from topic`,(err,topics)=>{
+app.get('*', (req, res, next) => {
+  conn.query(`select * from topic`, (err, topics) => {
     req.list = topics;
     next();
   });
 });
 
-app.use('/page',pageRouter);
-app.use('/author',authorRouter);
+app.use('/page', pageRouter);
+app.use('/author', authorRouter);
 
 
 app.get('/', (req, res) => {
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 
 
-app.use((req,res)=>{
+app.use((req, res) => {
   res.status(404).send('sorry');
 });
 
