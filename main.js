@@ -10,18 +10,16 @@ var pageRouter = require('./routes/page');
 var authorRouter = require('./routes/author');
 var loginRouter = require('./routes/login');
 const cookieParser = require('cookie-parser');
-
-
-
-
 app.use(cookieParser());
+const login = require('./lib/login.js');
+
 
 
 // set a cookie
 app.use(function (req, res, next) {
   // check if client sent cookie
-  var cookie = req.cookies.cookieName;
-  if (cookie === undefined) {
+  var cookie = req.cookies;
+  if (cookie.cookieName === undefined) {
     // no: set a new cookie
     var randomNumber = Math.random().toString();
     randomNumber = randomNumber.substring(2, randomNumber.length);
@@ -31,6 +29,14 @@ app.use(function (req, res, next) {
     // yes, cookie was already present 
     console.log('cookie exists', cookie);
   }
+  var is_admin = login.authIsOwner(req, res);
+
+
+  console.log(is_admin);
+
+  var asdf = login.authStatusUI(req, res);
+  console.log(asdf);
+
   next(); // <-- important!
 });
 
@@ -53,11 +59,13 @@ app.get('/', (req, res) => {
   var title = 'Welcome';
   var description = 'Hello, Node.js';
   var list = template.list(req.list);
+  var authStatusUI = login.authStatusUI(req, res);
   var html = template.html(title, list,
     `<h2>${title}</h2>${description}
     <img src= '/images/Depth1.jpg'>
     `
     , `<a href ="/page/create">create</a>`
+    , authStatusUI
   );
   res.writeHead(202);
   res.end(html);
