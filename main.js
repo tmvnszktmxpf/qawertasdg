@@ -10,11 +10,12 @@ var pageRouter = require('./routes/page');
 var authorRouter = require('./routes/author');
 var loginRouter = require('./routes/login');
 const cookieParser = require('cookie-parser');
-app.use(cookieParser());
 const login = require('./lib/login.js');
 
 
 
+
+app.use(cookieParser());
 // set a cookie
 app.use(function (req, res, next) {
   // check if client sent cookie
@@ -29,14 +30,6 @@ app.use(function (req, res, next) {
     // yes, cookie was already present 
     console.log('cookie exists', cookie);
   }
-  var is_admin = login.authIsOwner(req, res);
-
-
-  console.log(is_admin);
-
-  var asdf = login.authStatusUI(req, res);
-  console.log(asdf);
-
   next(); // <-- important!
 });
 
