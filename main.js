@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 var pageRouter = require('./routes/page');
 var authorRouter = require('./routes/author');
 var loginRouter = require('./routes/login');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
 var session = require('express-session')
 var FileStore = require('session-file-store')(session);
@@ -17,7 +17,7 @@ var FileStore = require('session-file-store')(session);
 
 
 
-// app.use(cookieParser());
+app.use(cookieParser());
 // // set a cookie
 // app.use(function (req, res, next) {
 //   // check if client sent cookie
