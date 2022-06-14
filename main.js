@@ -9,29 +9,31 @@ var bodyParser = require('body-parser')
 var pageRouter = require('./routes/page');
 var authorRouter = require('./routes/author');
 var loginRouter = require('./routes/login');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
+var session = require('express-session')
+var FileStore = require('session-file-store')(session);
 
 
 
 
-app.use(cookieParser());
-// set a cookie
-app.use(function (req, res, next) {
-  // check if client sent cookie
-  var cookie = req.cookies;
-  if (cookie.cookieName === undefined) {
-    // no: set a new cookie
-    var randomNumber = Math.random().toString();
-    randomNumber = randomNumber.substring(2, randomNumber.length);
-    res.cookie('cookieName', randomNumber, { maxAge: 900000, httpOnly: true });
-    console.log('cookie created successfully');
-  } else {
-    // yes, cookie was already present 
-    console.log('cookie exists', cookie);
-  }
-  next(); // <-- important!
-});
+// app.use(cookieParser());
+// // set a cookie
+// app.use(function (req, res, next) {
+//   // check if client sent cookie
+//   var cookie = req.cookies;
+//   if (cookie.cookieName === undefined) {
+//     // no: set a new cookie
+//     var randomNumber = Math.random().toString();
+//     randomNumber = randomNumber.substring(2, randomNumber.length);
+//     res.cookie('cookieName', randomNumber, { maxAge: 900000, httpOnly: true });
+//     console.log('cookie created successfully');
+//   } else {
+//     // yes, cookie was already present 
+//     console.log('cookie exists', cookie);
+//   }
+//   next(); // <-- important!
+// });
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +44,13 @@ app.get('*', (req, res, next) => {
     next();
   });
 });
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new FileStore({})
+}))
+
 
 app.use('/page', pageRouter);
 app.use('/author', authorRouter);
