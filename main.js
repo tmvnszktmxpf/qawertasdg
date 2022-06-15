@@ -17,24 +17,6 @@ var FileStore = require('session-file-store')(session);
 
 
 
-app.use(cookieParser());
-// // set a cookie
-// app.use(function (req, res, next) {
-//   // check if client sent cookie
-//   var cookie = req.cookies;
-//   if (cookie.cookieName === undefined) {
-//     // no: set a new cookie
-//     var randomNumber = Math.random().toString();
-//     randomNumber = randomNumber.substring(2, randomNumber.length);
-//     res.cookie('cookieName', randomNumber, { maxAge: 900000, httpOnly: true });
-//     console.log('cookie created successfully');
-//   } else {
-//     // yes, cookie was already present 
-//     console.log('cookie exists', cookie);
-//   }
-//   next(); // <-- important!
-// });
-
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
