@@ -50,6 +50,8 @@ app.use(session({
   saveUninitialized: true,
   store: new FileStore({})
 }))
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 
 
 app.use('/page', pageRouter);
