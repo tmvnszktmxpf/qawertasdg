@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
 var session = require('express-session')
 var FileStore = require('session-file-store')(session);
+var flash = require('connect-flash');
 
 
 var authData = {
@@ -37,6 +38,9 @@ app.use(session({
   saveUninitialized: true,
   store: new FileStore({})
 }))
+app.use(flash());
+
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 app.use(passport.initialize());
@@ -75,7 +79,8 @@ passport.use(new LocalStrategy(
 
 app.post('/login/login_process', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  failureFlash: true
 }));
 
 
