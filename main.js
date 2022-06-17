@@ -7,7 +7,7 @@ var compression = require('compression');
 var conn = require('./lib/db');
 var bodyParser = require('body-parser')
 var pageRouter = require('./routes/page');
-var authorRouter = require('./routes/author');
+// var authorRouter = require('./routes/author');
 const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
 var session = require('express-session')
@@ -37,18 +37,13 @@ app.use(flash());
 
 var passport = require('./lib/passport')(app);
 
-// app.post('/login/login_process', passport.authenticate('local', {
-//   successRedirect: '/',
-//   failureRedirect: '/login',
-//   failureFlash: true
-// }));
 
 
 var loginRouter = require('./routes/login')(passport);
 
 
 app.use('/page', pageRouter);
-app.use('/author', authorRouter);
+// app.use('/author', authorRouter);
 app.use('/login', loginRouter);
 
 

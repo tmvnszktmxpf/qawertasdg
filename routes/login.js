@@ -13,6 +13,14 @@ module.exports = function (passport) {
         login.logout_process(req, res);
     })
 
+    router.get('/register', (req, res) => {
+        login.register(req, res);
+    })
+
+    router.post('/register_process', (req, res) => {
+        login.register_process(req, res);
+    });
+
     router.post('/login_process', passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login',
