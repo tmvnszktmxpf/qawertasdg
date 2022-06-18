@@ -26,19 +26,7 @@ router.post('/delete_process', (req, res) => {
 })
 
 router.get('/:pageID', (req, res, next) => {
-    console.log(`
-    
-    
-    
-    
-    
-    2
-    
-    
-    
-    
-    `);
-    page.page(req, res);
+    page.page(req, res, next);
 })
 
 module.exports = router;

@@ -43,12 +43,10 @@ var loginRouter = require('./routes/login')(passport);
 
 
 app.use('/page', pageRouter);
-// app.use('/author', authorRouter);
 app.use('/login', loginRouter);
 
 
 app.get('/', (req, res) => {
-  console.log("111111111111111111 ", req.user);
   var title = 'Welcome';
   var description = 'Hello, Node.js';
   var list = template.list(req.list);
@@ -70,11 +68,6 @@ app.get('/', (req, res) => {
 app.use((req, res) => {
   res.status(404).send('sorry');
 });
-
-// app.use((err, req, res, next)=>{
-//   console.log(err.stack);
-//   res.suatus(500).send('asdfl??');
-// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
