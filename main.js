@@ -48,7 +48,7 @@ app.use('/login', loginRouter);
 
 
 app.get('/', (req, res) => {
-  console.log(req.user);
+  console.log("111111111111111111 ", req.user);
   var title = 'Welcome';
   var description = 'Hello, Node.js';
   var list = template.list(req.list);
