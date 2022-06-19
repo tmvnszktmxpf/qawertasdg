@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-var page = require('../lib/topic');
+const page = require('../lib/topic');
 
 
 

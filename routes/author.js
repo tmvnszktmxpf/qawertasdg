@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-var author = require('../lib/author');
+const author = require('../lib/author');
 
 
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-var login = require('../lib/login');
+const login = require('../lib/login');
 
 
 

@@ -2,17 +2,17 @@
 const express = require('express')
 const app = express()
 const port = 3000
-var template = require('./lib/template.js');
-var compression = require('compression');
-var conn = require('./lib/db');
-var bodyParser = require('body-parser')
-var pageRouter = require('./routes/page');
-// var authorRouter = require('./routes/author');
+const template = require('./lib/template.js');
+const compression = require('compression');
+const conn = require('./lib/db');
+const bodyParser = require('body-parser')
+const pageRouter = require('./routes/page');
+// const authorRouter = require('./routes/author');
 const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
-var session = require('express-session')
-var FileStore = require('session-file-store')(session);
-var flash = require('connect-flash');
+const session = require('express-session')
+const FileStore = require('session-file-store')(session);
+const flash = require('connect-flash');
 
 
 
@@ -35,11 +35,11 @@ app.use(session({
 }))
 app.use(flash());
 
-var passport = require('./lib/passport')(app);
+const passport = require('./lib/passport')(app);
 
 
 
-var loginRouter = require('./routes/login')(passport);
+const loginRouter = require('./routes/login')(passport);
 
 
 app.use('/page', pageRouter);
@@ -47,11 +47,11 @@ app.use('/login', loginRouter);
 
 
 app.get('/', (req, res) => {
-  var title = 'Welcome';
-  var description = 'Hello, Node.js';
-  var list = template.list(req.list);
-  var authStatusUI = login.authStatusUI(req, res);
-  var html = template.html(title, list,
+  const title = 'Welcome';
+  const description = 'Hello, Node.js';
+  const list = template.list(req.list);
+  const authStatusUI = login.authStatusUI(req, res);
+  const html = template.html(title, list,
     `<h2>${title}</h2>${description}
     <img src= '/images/Depth1.jpg'>
     `
