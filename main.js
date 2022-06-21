@@ -66,9 +66,9 @@ const http = require("http")
 const https = require("https")
 const fs = require("fs")
 
-var privateKey = fs.readFileSync("/etc/letsencrypt/live/{hostname}/privkey.pem")
-var certificate = fs.readFileSync("/etc/letsencrypt/live/{hostname}/cert.pem")
-var ca = fs.readFileSync("/etc/letsencrypt/live/{hostname}/chain.pem")
+var privateKey = fs.readFileSync("/etc/letsencrypt/live/eldkqmffh8.ml/privkey.pem")
+var certificate = fs.readFileSync("/etc/letsencrypt/live/eldkqmffh8.ml/cert.pem")
+var ca = fs.readFileSync("/etc/letsencrypt/live/eldkqmffh8.ml/chain.pem")
 const credentials = { key: privateKey, cert: certificate, ca: ca }
 
 
