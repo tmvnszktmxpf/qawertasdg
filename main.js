@@ -62,6 +62,15 @@ app.get('/', (req, res) => {
   res.end(html);
 })
 
+const http = require("http")
+const https = require("https")
+const fs = require("fs")
+
+var privateKey = fs.readFileSync("/etc/letsencrypt/live/{hostname}/privkey.pem")
+var certificate = fs.readFileSync("/etc/letsencrypt/live/{hostname}/cert.pem")
+var ca = fs.readFileSync("/etc/letsencrypt/live/{hostname}/chain.pem")
+const credentials = { key: privateKey, cert: certificate, ca: ca }
+
 
 
 
@@ -69,8 +78,14 @@ app.use((req, res) => {
   res.status(404).send('sorry');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
+
+http.createServer(app).listen(80)
+https.createServer(credentials, app).listen(443)
+
+
+
 
 
