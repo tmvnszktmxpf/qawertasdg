@@ -6,7 +6,7 @@ const user = require('../lib/user');
 
 
 
-router.get('/:pageID', (req, res, next) => {
+router.get('/', (req, res, next) => {
     user.user(req, res, next);
 })
 
