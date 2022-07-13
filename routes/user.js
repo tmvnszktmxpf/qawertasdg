@@ -20,7 +20,9 @@ router.post('/', (req, res, next) => {
 
     rows.forEach(row=>{
         const separators = [' ', ',','"','[',']'];
-        const sp = row.split(separators);
+        let sp = row.split(/["' ,\[\]]/);
+        sp = sp.filter(word=>word.length>2);
+        
         console.log(sp);
     });
 
