@@ -7,6 +7,7 @@ const compression = require('compression');
 const conn = require('./lib/db');
 const bodyParser = require('body-parser')
 const pageRouter = require('./routes/page');
+const userRouter = require('./routes/user');
 // const authorRouter = require('./routes/author');
 const cookieParser = require('cookie-parser');
 const login = require('./lib/login.js');
@@ -44,6 +45,7 @@ const loginRouter = require('./routes/login')(passport);
 
 app.use('/page', pageRouter);
 app.use('/login', loginRouter);
+app.use('/user', userRouter);
 
 
 app.get('/', (req, res) => {

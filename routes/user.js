@@ -6,4 +6,8 @@ const user = require('../lib/user');
 
 
 
+router.get('/:pageID', (req, res, next) => {
+    user.page(req, res, next);
+})
+
 module.exports = router;
