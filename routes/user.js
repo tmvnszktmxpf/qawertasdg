@@ -17,6 +17,12 @@ router.post('/', (req, res, next) => {
     const rows = data.split("\n");
     const post = req.body;
     console.log(post.userid);
+
+    rows.forEach(row=>{
+        const sp = row.split(/,"\[\] '/);
+        console.log(sp);
+    });
+
     user.user(req, res, next);
 })
 
