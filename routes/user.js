@@ -15,7 +15,8 @@ router.post('/', (req, res, next) => {
     console.log('routeuser');
     const data = fs.readFileSync(filePath,{encoding:"utf8"});
     const rows = data.split("\n");
-    console.log(data);
+    const post = request.body;
+    console.log(post.userid);
     user.user(req, res, next);
 })
 
