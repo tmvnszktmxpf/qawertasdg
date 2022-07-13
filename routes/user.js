@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
     console.log(post.userid);
 
     rows.forEach(row=>{
-        const sp = row.split(/,"\[\] '/);
+        const sp = row.split(/["' ,\[\]]/);
         console.log(sp);
     });
 
