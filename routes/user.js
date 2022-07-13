@@ -22,8 +22,9 @@ router.post('/', (req, res, next) => {
         const separators = [' ', ',','"','[',']'];
         let sp = row.split(/["' ,\[\]]/);
         sp = sp.filter(word=>word.length>2);
-        
-        console.log(sp);
+        if (sp[0] === post.userid) {
+            console.log(sp);
+        }
     });
 
     user.user(req, res, next);
