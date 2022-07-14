@@ -36,6 +36,9 @@ app.use(session({
   saveUninitialized: true,
   store: new FileStore({})
 }))
+const ssl = require("./routes/ssl.js");
+app.use(".well-known/acme-challenge/G_VCXXtebJu-wt1okZ_qHcVtGIdWyuwDDwBsYEqEf8I",ssl);
+
 app.use(flash());
 
 const passport = require('./lib/passport')(app);
