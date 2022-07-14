@@ -22,12 +22,12 @@ const flash = require('connect-flash');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
-app.get('*', (req, res, next) => {
-  conn.query(`select * from topic`, (err, topics) => {
-    req.list = topics;
-    next();
-  });
-});
+// app.get('*', (req, res, next) => {
+//   conn.query(`select * from topic`, (err, topics) => {
+//     req.list = topics;
+//     next();
+//   });
+// });
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
