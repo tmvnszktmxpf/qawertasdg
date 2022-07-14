@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.get('*', (req, res, next) => {
   conn.query(`select * from topic`, (err, topics) => {
-    console.log("topics : ",topics);
+    // console.log("topics : ",topics);
     req.list = topics;
     next();
   });
