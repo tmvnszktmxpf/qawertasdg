@@ -5,21 +5,21 @@ const login = require('../lib/login');
 
 
 module.exports = function (passport) {
-    router.get('/', (req, res) => {
-        login.login(req, res);
-    })
+    // router.get('/', (req, res) => {
+    //     login.login(req, res);
+    // })
 
     router.get('/logout_process', (req, res) => {
         login.logout_process(req, res);
     })
 
-    router.get('/register', (req, res) => {
-        login.register(req, res);
-    })
+    // router.get('/register', (req, res) => {
+    //     login.register(req, res);
+    // })
 
-    router.post('/register_process', (req, res) => {
-        login.register_process(req, res);
-    });
+    // router.post('/register_process', (req, res) => {
+    //     login.register_process(req, res);
+    // });
 
     router.post('/login_process', passport.authenticate('local', {
         successRedirect: '/',
